@@ -162,14 +162,11 @@
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen antialiased flex flex-col font-sans">
 
-  <!-- ================= PANTALLA 1: INICIO DE SESIÓN / REGISTRO (AUTH GATEWAY) ================= -->
+  <!-- ================= PANTALLA 1: INICIO DE SESIÓN (ABRE POR DEFECTO) ================= -->
   <section id="authScreen" class="min-h-screen flex items-center justify-center p-4 relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950">
-    <!-- Patrón de fondo decorativo -->
     <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#38bdf8_1px,transparent_1px)] [background-size:20px_20px]"></div>
 
-    <div class="max-w-md w-full bg-slate-900/90 backdrop-blur-xl border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl relative z-10 fade-in">
-      
-      <!-- Brand Logo y Título -->
+    <div class="max-w-md w-full bg-slate-900/90 backdrop-blur-xl border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl relative z-10">
       <div class="text-center space-y-2 mb-6">
         <div class="w-14 h-14 mx-auto rounded-2xl bg-gradient-to-tr from-sky-500 via-indigo-500 to-emerald-400 flex items-center justify-center text-white shadow-lg shadow-sky-500/25">
           <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -177,23 +174,31 @@
           </svg>
         </div>
         <h1 class="text-2xl font-extrabold text-white tracking-tight">WanderSquad</h1>
-        <p class="text-xs text-slate-400">Proyecto 3: Organizador de Viajes en Grupo &bull; SENA 2026</p>
-        
-        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[11px] text-emerald-400 font-medium mt-1">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          <span id="authDbStatusText">Base de Datos Conectada</span>
-        </div>
+        <p class="text-xs text-slate-400">Organizador de Viajes en Grupo &bull; SENA 2026</p>
       </div>
 
-      <!-- Selector de Modo: Login / Registro -->
       <div class="flex p-1 bg-slate-950 rounded-xl border border-slate-800 mb-6">
-        <button onclick="setAuthTab('login')" id="btnAuthTabLogin" class="flex-1 py-2 text-xs font-bold rounded-lg transition-all bg-sky-500 text-white shadow-sm">
-          Iniciar Sesión
-        </button>
-        <button onclick="setAuthTab('register')" id="btnAuthTabRegister" class="flex-1 py-2 text-xs font-bold rounded-lg transition-all text-slate-400 hover:text-white">
-          Registrar en BD
-        </button>
+        <button onclick="setAuthTab('login')" id="btnAuthTabLogin" class="flex-1 py-2 text-xs font-bold rounded-lg transition-all bg-sky-500 text-white shadow-sm">Iniciar Sesión</button>
+        <button onclick="setAuthTab('register')" id="btnAuthTabRegister" class="flex-1 py-2 text-xs font-bold rounded-lg transition-all text-slate-400 hover:text-white">Registrarse</button>
       </div>
+
+      <!-- FORMULARIO LOGIN -->
+      <form id="screenLoginForm" onsubmit="handleMainLogin(event)" class="space-y-4 text-xs">
+        <div>
+          <label class="block text-slate-300 font-medium mb-1">Correo Electrónico</label>
+          <input type="email" id="mainLoginEmail" required value="mateo@sena.edu.co" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-sky-500">
+        </div>
+        <div>
+          <label class="block text-slate-300 font-medium mb-1">Contraseña</label>
+          <input type="password" id="mainLoginPassword" required value="sena2026" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-sky-500">
+        </div>
+        <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-sky-500 to-indigo-600 text-white font-bold text-xs shadow-lg cursor-pointer">Ingresar al Organizador &rarr;</button>
+        
+        <div class="pt-4 border-t border-slate-800">
+          <div class="text-[11px] text-slate-400 text-center mb-2 font-medium">Acceso Rápido de Prueba:</div>
+          <button type="button" onclick="loginAsDemo('mateo@sena.edu.co')" class="w-full p-2 rounded-lg bg-slate-950 hover:bg-slate-800 text-slate-300 border border-slate-800 text-center text-xs">Entrar como Mateo (Organizador)</button>
+        </div>
+      </form>
 
       <!-- FORMULARIO: LOGIN -->
       <form id="screenLoginForm" onsubmit="handleMainLogin(event)" class="space-y-4 text-xs">
